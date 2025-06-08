@@ -1,11 +1,11 @@
-import React from 'react'
+import { SignIn } from "@clerk/nextjs";
 
 const page = () => {
   return (
     <main className="flex items-center justify-center">
-        Sign In
+      <SignIn />
     </main>
-  )
-}
+  );
+};
 
-export default page
+export default page;
