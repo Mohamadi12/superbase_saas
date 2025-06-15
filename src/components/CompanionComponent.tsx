@@ -6,6 +6,7 @@ import { vapi } from "@/lib/vapi.sdk";
 import Image from "next/image";
 import Lottie, { LottieRefCurrentProps } from "lottie-react";
 import soundwaves from "@/constants/soundwaves.json";
+import { addToSessionHistory } from "@/lib/actions/companion.actions";
 
 enum CallStatus {
   INACTIVE = "INACTIVE",
@@ -46,7 +47,7 @@ const CompanionComponent = ({
 
     const onCallEnd = () => {
       setCallStatus(CallStatus.FINISHED);
-      // addToSessionHistory(companionId) // change en fonction des besoin
+      addToSessionHistory(companionId); //Enregistre une nouvelle session d’utilisateur avec un compagnon && Données insérées dans session_history
     };
 
     const onMessage = (message: Message) => {
@@ -88,13 +89,13 @@ const CompanionComponent = ({
     setCallStatus(CallStatus.CONNECTING);
 
     const assistantOverrides = {
-      variableValues: { subject, topic, style }, // change en fonction des besoin(Les paramètres de l'assistant)
+      variableValues: { subject, topic, style }, // Les parametres pour l'assistants
       clientMessages: ["transcript"],
       serverMessages: [],
     };
 
     // @ts-expect-error
-    vapi.start(configureAssistant(voice, style), assistantOverrides); // change en fonction des besoin
+    vapi.start(configureAssistant(voice, style), assistantOverrides);
   };
 
   const handleDisconnect = () => {

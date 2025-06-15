@@ -2,7 +2,6 @@ import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { subjectsColors, voices } from "@/constants";
 import { CreateAssistantDTO } from "@vapi-ai/web/dist/api";
-import { CLIENT_MESSAGES, SERVER_MESSAGES } from "@/constants/messages";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -56,10 +55,8 @@ export const configureAssistant = (voice: string, style: string) => {
         },
       ],
     },
-    clientMessages:
-      CLIENT_MESSAGES as unknown as CreateAssistantDTO["clientMessages"],
-    serverMessages:
-      SERVER_MESSAGES as unknown as CreateAssistantDTO["serverMessages"],
+    clientMessages: [],
+    serverMessages: [],
   };
   return vapiAssistant;
 };
